@@ -1,0 +1,23 @@
+{
+  "name": "nested-set",
+  "version": "0.1.0",
+  "description": "Implementation of the Nested Set model",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremyfourna/nested-set.git"
+  },
+  "author": "Jeremy Fourna <jeremyfourna@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeremyfourna/nested-set/issues"
+  },
+  "homepage": "https://github.com/jeremyfourna/nested-set#readme",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  }
+}
