@@ -35,6 +35,8 @@ function updateLeftRight(currentIndex, currentPath, tree) {
   const currentNode = R.view(currentNodeLens, tree);
   const newTree = R.set(currentNodeLeftLens, currentIndex, tree);
 
+  console.log(currentNode, newTree);
+
   // Check if we are out of the tree
   if (R.isNil(currentNode)) {
     // If yes check if we are on the first level

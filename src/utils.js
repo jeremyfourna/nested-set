@@ -39,6 +39,10 @@ function lengthZero(list) {
   return R.equals(0, R.length(list));
 }
 
+function lengthNotZero(list) {
+  return R.gt(R.length(list), 0);
+}
+
 function right(node) {
   return R.prop('right', node);
 }
@@ -46,4 +50,5 @@ function right(node) {
 exports.descendant = descendant;
 exports.leftRightAndId = leftRightAndId;
 exports.lengthMinusOne = lengthMinusOne;
+exports.lengthNotZero = lengthNotZero;
 exports.lengthZero = lengthZero;

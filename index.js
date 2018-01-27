@@ -8,9 +8,15 @@ const {
 } = require('./src/nested-set');
 
 const children = [
-  ['root', 'men'],
-  ['root', 'women'],
-  ['men', 'suits']
+  [
+    ['root'], 'men'
+  ],
+  [
+    ['root'], 'women'
+  ],
+  [
+    ['root', 'men'], 'suits'
+  ]
 ];
 const mySet = nestedSet();
 //const newSet = appendChild('root', 'men', mySet);

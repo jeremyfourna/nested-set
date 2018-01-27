@@ -1,7 +1,10 @@
 /*jshint esversion: 6 */
 
 const R = require('ramda');
-const { lengthZero } = require('./utils');
+const {
+  lengthZero,
+  lengthNotZero
+} = require('./utils');
 const { updateLeftRight } = require('./update-left-right');
 
 function nestedSet() {
@@ -21,24 +24,29 @@ function newNode(id) {
   };
 }
 
-function appendChild(parentId, nodeId, tree) {
-  const descendantLens = R.lensProp('descendant');
-
+function appendChild(ancestorsList, nodeId, tree) {
   if (R.equals('root', nodeId)) {
-    throw new Error('The id of the node can not be "root", please use another alias for your node.');
-  } else if (R.equals('root', parentId)) {
-    return R.over(descendantLens, R.append(newNode(nodeId)), tree);
+    throw new Error('The id of the new node can not be "root", please use another alias for your new node.');
+  } else if (!R.equals('root', R.head(ancestorsList))) {
+    throw new Error('The first value of the ancestors list must be "root"');
   } else {
-    const parentPosition = findById(parentId, tree);
-    (nodeId === 'suits') ? console.log(parentId, nodeId, tree, parentPosition): console.log('#');
-    const parentPath = findPathByLeftRight(parentPosition, [], tree);
-    return tree;
+    const ancestorsPath = R.append('descendant', R.intersperse('descendant', ancestorsList));
+    return findPlaceToInsertChild(ancestorsPath, ['root', 'descendant'], nodeId, tree);
   }
+}
+
+function findPlaceToInsertChild(ancestorsPath, currentPath, nodeId, tree) {
+  console.log(ancestorsPath, currentPath);
+  if (lengthNotZero(R.drop(ancestorsPath))) {
+
+  }
+  return tree;
 }
 
 function appendChildren(listOfChildren, tree) {
   if (lengthZero(listOfChildren)) {
-    return updateLeftRight(1, [], tree);
+    return tree;
+    //return updateLeftRight(1, [], tree);
   } else {
     const newTree = appendChild(...R.head(listOfChildren), tree);
     return appendChildren(R.tail(listOfChildren), newTree);
